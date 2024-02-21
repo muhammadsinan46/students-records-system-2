@@ -4,7 +4,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:studentrecords/add_students.dart';
-import 'package:studentrecords/profile_details.dart';
+
 import 'package:studentrecords/search-Screen.dart';
 import 'package:studentrecords/student_helper.dart';
 import 'package:studentrecords/student_model.dart';
@@ -45,7 +45,8 @@ const  HomeScreen({super.key});
                     return InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ProfileScreen(
+                          builder: (context) => AddStudent(
+                            isEdit: true,
                               stdrecords: student,
                               index: index,
                               id: student.id),
@@ -78,7 +79,7 @@ const  HomeScreen({super.key});
         child: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const AddStudent()));
+                MaterialPageRoute(builder: (context) =>  AddStudent(isEdit: false,)));
           },
           child: const Row(children: [Icon(Icons.add), Text("Add Student")]),
         ),

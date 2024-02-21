@@ -11,13 +11,11 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
 final Student stdrecords;
-final int index;
-final int id;
+
     ProfileScreen({
     Key?key,
     required this.stdrecords,
-    required this.index,
-    required this.id
+
 
 
   }):super(key: key);
@@ -137,7 +135,7 @@ final int id;
                 ),
                 const SizedBox(height: 10),
                 DropdownButtonFormField(
-                  value:domainList[index] ,
+                  value:domainList[1] ,
                     decoration: InputDecoration(
                        
                         focusedBorder: OutlineInputBorder(
@@ -175,13 +173,13 @@ final int id;
                 const SizedBox(height: 50),
                 ElevatedButton(
                     onPressed: () {
-                      updateList(
-                          name: nameController.text,
-                          age: ageController.text,
-                          gender: values.gen!,
-                          batch: values.dom!,
-                          email: emailController.text,
-                          profile: values.proImage!.path);
+                      // updateList(
+                      //     name: nameController.text,
+                      //     age: ageController.text,
+                      //     gender: values.gen!,
+                      //     batch: values.dom!,
+                      //     email: emailController.text,
+                      //     profile: values.proImage!.path);
                       Navigator.of(context).pop();
                     },
                     child: const Text("Save"))
@@ -193,15 +191,5 @@ final int id;
     
     );
   }
-    updateList({
-    required String name,
-    required String age,
-    required String gender,
-    required String batch,
-    required String profile,
-    required String email,
-  }) async {
-    final value = Student(name, age, gender, batch, profile, email, -1);
-    await StudentHelper().onSave(value);
-  }
+
 }

@@ -35,6 +35,7 @@ dependencies:
   hive_flutter:
   image_picker: ^1.0.6
   path_provider:
+  email_validator: ^2.1.17
 
 
 

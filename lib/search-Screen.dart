@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
+import 'package:studentrecords/add_students.dart';
 import 'package:studentrecords/main.dart';
-import 'package:studentrecords/profile_details.dart';
 import 'package:studentrecords/student_helper.dart';
 import 'package:studentrecords/student_model.dart';
 
@@ -75,7 +75,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         return ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ProfileScreen(
+                                builder: (context) => AddStudent(
+                                    isEdit: true,
                                     stdrecords: student,
                                     index: index,
                                     id: student.id),
@@ -85,12 +86,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               backgroundImage: FileImage(File(student.profile)),
                             ),
                             title: Text(studentList[index].name),
-                            trailing: IconButton(
-                              onPressed: () {
-                                StudentHelper().deleteStudent(student.id);
-                              },
-                              icon: const Icon(Icons.close),
-                            ));
+                            
+                            );
                       });
                 }
               },
@@ -108,11 +105,11 @@ class _SearchScreenState extends State<SearchScreen> {
     if (debouncer?.isActive ?? false) debouncer?.cancel();
     debouncer = Timer(const Duration(milliseconds: 500), () {
       if (searchtext != searchController) {
-        setState(() {
+  
           final searchStudent = studentList.where((std) =>
                 std.name.toLowerCase().contains(value.toLowerCase())).toList();
           stdList.value = searchStudent;
-        });
+        
       }
     });
   }
